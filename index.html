@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Crew Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="crew-title">KDA - KING DEVIL AGENT </h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <button class="nav-btn active" data-page="leaderboard">Leaderboard</button>
+                <button class="nav-btn" data-page="rewards">Rewards</button>
+                <button class="nav-btn" data-page="info">Info</button>
+                <button class="nav-btn" data-page="alltime">All-Time</button>
+                <button class="nav-btn" data-page="announcements">Announcements</button>
+                <button class="nav-btn" data-page="rewardhistory">Reward History</button>
+                <button class="nav-btn" data-page="halloffame">Hall of Fame</button>
+            </div>
+            <button class="admin-btn" id="adminBtn">Admin Control</button>
+        </div>
+    </nav>
+
+    <!-- Admin Password Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Admin Access</h2>
+            <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="off">
+            <button id="submitPassword">Submit</button>
+            <p class="error-message" id="passwordError"></p>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        <!-- Leaderboard Page -->
+        <section id="leaderboard" class="page active">
+            <h1>Leaderboard</h1>
+            <div class="last-updated" id="leaderboardUpdated">Last updated: --</div>
+            
+            <div class="leaderboard-container">
+                <div id="leaderboardList"></div>
+            </div>
+
+            <!-- Admin Edit Controls -->
+            <div class="admin-controls" id="leaderboardAdminControls" style="display: none;">
+                <h2>Edit Leaderboard</h2>
+                <div class="edit-section">
+                    <div class="add-player">
+                        <input type="text" id="newPlayerName" placeholder="Player name">
+                        <input type="number" id="newPlayerStars" placeholder="Stars" min="0">
+                        <button id="addPlayerBtn">Add Player</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rewards Page -->
+        <section id="rewards" class="page">
+            <h1>Rewards</h1>
+            
+            <div class="rewards-container">
+                <div class="reward-card">
+                    <div class="reward-field">
+                        <label>Winner:</label>
+                        <span id="rewardWinner" class="reward-value">--</span>
+                    </div>
+                    <div class="reward-field">
+                        <label>Reward:</label>
+                        <span id="rewardDescription" class="reward-value">--</span>
+                    </div>
+                    <div class="reward-field">
+                        <label>Date:</label>
+                        <span id="rewardDate" class="reward-value">--</span>
+                    </div>
+                    <div class="reward-field">
+                        <label>Notes:</label>
+                        <span id="rewardNote" class="reward-value">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Edit Controls -->
+            <div class="admin-controls" id="rewardsAdminControls" style="display: none;">
+                <h2>Edit Reward</h2>
+                <div class="edit-section">
+                    <div class="form-group">
+                        <label for="editWinner">Winner:</label>
+                        <input type="text" id="editWinner" placeholder="Player name">
+                    </div>
+                    <div class="form-group">
+                        <label for="editReward">Reward:</label>
+                        <input type="text" id="editReward" placeholder="Reward description">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDate">Date:</label>
+                        <input type="date" id="editDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="editNote">Notes:</label>
+                        <textarea id="editNote" placeholder="Additional notes"></textarea>
+                    </div>
+                    <button id="saveRewardBtn">Save Changes</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Page -->
+        <section id="info" class="page">
+            <h1>Crew Info</h1>
+            <div class="info-container">
+                <div class="info-section">
+                    <h2>Rules</h2>
+                    <ul>
+                        <li>🩸 KDA – KING DEVIL AGENT
+🔥 OFFICIAL LEADERBOARD & REWARD RULES 🔥
+This web-based leaderboard exists for ONE reason:
+To push KDA to become the STRONGEST crew in RDS.
+IF WE TRY, WE WIN. IF WE GRIND, WE DOMINATE. 🗣️🔥
+🏆 DAILY LEADERBOARD
+Leaderboard updates every 24 hours
+Only stars earned in that period count
+Top Grinder = #1 of the day
+💰 DAILY REWARD — 10M CASH
+To receive 10M in-game cash, you MUST:
+✅ Be Top Grinder
+✅ Reach MINIMUM 8000 STARS in 24 HOURS
+✅ Grind fair & legit
+✅ Be an active KDA member
+❌ Top 1 but under 8000 stars = NO REWARD
+No excuses. No mercy.
+🗓️ Sunday SPECIAL — 20M CASH
+Every Sunday, Top Grinder wins 20M cash
+10000-star minimum STILL REQUIRED
+Fail the minimum = reward cancelled
+🚗 EVENT REWARDS (CAR EVENTS)
+Special grind events may be announced
+Rewards may include cars or bonus cash
+Event rules will be shared before start
+Only event-time grind counts
+⚠️ ZERO-TOLERANCE RULES
+Leaderboard data after 24h is FINAL
+Cheats, bugs, or fake grind = DISQUALIFIED
+Admin decision is FINAL
+Repeated abuse = KICK FROM KDA
+🩸 FINAL WARNING
+This is NOT free money.
+This is WAR BY GRIND.
+If you want rewards — BLEED STARS.
+If you want comfort — this crew isn't for you.
+KDA – KING DEVIL AGENT
+WE GRIND. WE DOMINATE. WE RULE RDS. 🗣️🔥</li>
+                        <li>Respect all crew members</li>
+                        <li>No cheating or exploiting</li>
+                        <li>Active participation required</li>
+                        <li>Follow Discord guidelines</li>
+                        <li>Reach MINIMUM 8000 STARS in 24 HOURS</li>
+                        <li>Reach MINIMUM 10000 STARS in 24 HOURS FOR SUNDAY</li>
+                    </ul>
+                </div>
+                <div class="info-section">
+                    <h2>About</h2>
+                    <p>Welcome to our RDS gaming crew KDA! This leaderboard tracks your progress and achievements. Stay active and compete for the top spot!</p>
+                    <p>Everyday at 1PM We Update Player STARPOINT</p>
+                </div>
+                <div class="info-section">
+                    <h2>Contact</h2>
+                    <p>For questions or issues, contact the admin through Discord.</p>
+                    <p>Platform Admin - Tokyo Drift/Grind Monstar And VXN|69 and Afraz/master of star</p>
+                    <p>PAGE VERSION - 1.0.1</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- All-Time Leaderboard Page -->
+        <section id="alltime" class="page">
+            <h1>All-Time Leaderboard</h1>
+            <div class="leaderboard-container">
+                <div id="allTimeList"></div>
+            </div>
+        </section>
+
+        <!-- Announcements Page -->
+        <section id="announcements" class="page">
+            <h1>Crew Announcements</h1>
+            <div class="announcements-container">
+                <div id="announcementsList"></div>
+            </div>
+
+            <!-- Admin Edit Controls -->
+            <div class="admin-controls" id="announcementsAdminControls" style="display: none;">
+                <h2>Post Announcement</h2>
+                <div class="edit-section">
+                    <div class="form-group">
+                        <label for="announcementText">Announcement:</label>
+                        <textarea id="announcementText" placeholder="Enter announcement text" rows="5"></textarea>
+                    </div>
+                    <button id="postAnnouncementBtn">Post Announcement</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reward History Page -->
+        <section id="rewardhistory" class="page">
+            <h1>Reward History</h1>
+            <div class="reward-history-container">
+                <div id="rewardHistoryList"></div>
+            </div>
+
+            <!-- Admin Edit Controls -->
+            <div class="admin-controls" id="rewardHistoryAdminControls" style="display: none;">
+                <h2>Add Reward Entry</h2>
+                <div class="edit-section">
+                    <div class="form-group">
+                        <label for="historyWinner">Winner:</label>
+                        <input type="text" id="historyWinner" placeholder="Player name">
+                    </div>
+                    <div class="form-group">
+                        <label for="historyReward">Reward:</label>
+                        <input type="text" id="historyReward" placeholder="Reward description">
+                    </div>
+                    <div class="form-group">
+                        <label for="historyDate">Date:</label>
+                        <input type="date" id="historyDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="historyType">Type:</label>
+                        <select id="historyType">
+                            <option value="daily">Daily</option>
+                            <option value="friday">Friday Special</option>
+                            <option value="event">Event</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="historyNote">Notes:</label>
+                        <textarea id="historyNote" placeholder="Additional notes" rows="3"></textarea>
+                    </div>
+                    <button id="addRewardHistoryBtn">Add Reward</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hall of Fame Page -->
+        <section id="halloffame" class="page">
+            <h1>Hall of Fame</h1>
+            <div class="hall-of-fame-container">
+                <div id="hallOfFameList"></div>
+            </div>
+
+            <!-- Admin Edit Controls -->
+            <div class="admin-controls" id="hallOfFameAdminControls" style="display: none;">
+                <h2>Add Hall of Fame Entry</h2>
+                <div class="edit-section">
+                    <div class="form-group">
+                        <label for="hofName">Player Name:</label>
+                        <input type="text" id="hofName" placeholder="Player name">
+                    </div>
+                    <div class="form-group">
+                        <label for="hofPicture">Picture URL:</label>
+                        <input type="url" id="hofPicture" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label for="hofDescription">Description:</label>
+                        <textarea id="hofDescription" placeholder="Short description" rows="4"></textarea>
+                    </div>
+                    <button id="addHallOfFameBtn">Add to Hall of Fame</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
